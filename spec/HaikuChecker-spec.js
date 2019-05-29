@@ -30,5 +30,11 @@ describe ( 'isValidString', function() {
 
     expect(checkforDoubleVowel(string)).toBe(true);
   });
+
+  it ('will check a dipthong exists in the word', function(){
+    let string ="foil";
+
+    expect(checkfordiphthongs(string)).toBe(true);
+  });
 });
 
