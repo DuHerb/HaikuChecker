@@ -1,7 +1,7 @@
 {
   "name": "kerritemplate",
   "version": "1.0.0",
-  "description": "\"this is a helper template for js projects\"",
+  "description": "\"this checks if the poem is a haiku\"",
   "main": "main.js",
   "scripts": {
     "build": "webpack --mode development",
