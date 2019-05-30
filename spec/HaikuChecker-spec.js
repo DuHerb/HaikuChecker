@@ -1,4 +1,4 @@
-import { isValidString, haikuChecker, isValidArray, vowelCounter, checkForE, checkForDips, checkForLE, countSyllables, lineCounter } from "../src/haiku";
+import { checkForY, isValidString, haikuChecker, isValidArray, vowelCounter, checkForE, checkForDips, checkForLE, countSyllables, lineCounter } from "../src/haiku";
 
 describe ( 'haiku', function() {
 
@@ -15,9 +15,12 @@ describe ( 'haiku', function() {
 
   it('will return the number of vowels in a string', function(){
     let inputString = "string";
-    let single = "i"
+    let single = "i";
+    let none = "gym";
 
     expect(vowelCounter(inputString)).toEqual(1);
+    expect(vowelCounter(single)).toEqual(1);
+    expect(vowelCounter(none)).toEqual(1);
   });
 
   it('will check if a word ends in e', function(){
@@ -26,17 +29,11 @@ describe ( 'haiku', function() {
     expect(checkForE(string)).toBe(true);
   });
 
-  // it ('will check if two vowels are next to each other', function(){
-  //   let string = "book";
-
-  //   expect(checkforDoubleVowel(string)).toBe(true);
-  // });
-
-   it ('will check a dipthong exists in the word', function(){
+  it ('will check a dipthong exists in the word', function(){
      
-     let string ="foil";
+    let string ="foil";
 
-   expect(checkForDips(string)).toBe(true);
+    expect(checkForDips(string)).toBe(true);
   });
 
   it('will check for le', function(){
@@ -64,14 +61,20 @@ describe ( 'haiku', function() {
   });
 
   it('will count the syllables in a line', function(){
-    let line = "The word is pal";
-    let line2 = "Five Seven Five";
-    let line3 = "One Two Three";
-    let line4 = "I have one animal that is a dog";
-    expect(lineCounter(line)).toEqual(4);
-    expect(lineCounter(line2)).toEqual(4);
-    expect(lineCounter(line3)).toEqual(3);
-    expect(lineCounter(line4)).toEqual(10);
+    // let line = "The word is pal";
+    // let line2 = "Five Seven Five";
+    // let line3 = "One Two Three";
+    // let line4 = "I have one animal that is a dog";
+    let line5 = "Im sorry my friend";
+    let line6 = "your words are not so great, so";
+    let line7 = "no haiku do make";
+    // expect(lineCounter(line)).toEqual(4);
+    // expect(lineCounter(line2)).toEqual(4);
+    // expect(lineCounter(line3)).toEqual(3);
+    // expect(lineCounter(line4)).toEqual(10);
+    expect(lineCounter(line5)).toEqual(5);
+    expect(lineCounter(line6)).toEqual(7);
+    expect(lineCounter(line7)).toEqual(5);
   });
 
   it('will check the syllables in the first line', function(){
@@ -80,6 +83,8 @@ describe ( 'haiku', function() {
     expect(haikuChecker(haiku)).toEqual(true);
     expect(haikuChecker(haiku2)).toEqual(false);
   });
+
+
 
 });
 

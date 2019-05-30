@@ -21,8 +21,9 @@ export function isValidArray(inputArray) {
 
 //split the string into an array
 //compare vowel array and string array
+//string is a single word
 export function vowelCounter(input){
-  let vowelArray = ['a','e','i','o','u','A','E','I','O','U'];
+  let vowelArray = ['a','e','i','o','u','y','A','E','I','O','U','Y'];
   let splitString = input.split('');
   let counter = 0;
   
@@ -33,6 +34,9 @@ export function vowelCounter(input){
       }
     }
   }
+  if(counter == 0){
+    counter++;
+  }
   return counter;
 }
 
@@ -42,22 +46,26 @@ export function checkForE(input){
   return checkE.test(input);
 }
 
+export function checkForY(input){
+  var checkY = /^y/i;
+  return checkY.test(input);
+}
+
+
 export function checkForDips(input){
-  let dipArray = [/ow/, /ou/, /ie/, /oi/, /oo/, /ea/, /ee/, /ai/,/aa/, /uu/, /ii/, /oa/];
+  let dipArray = [/ow/, /ou/, /ie/, /oi/, /oo/, /ea/, /ee/, /ai/,/aa/, /uu/, /ii/, /oa/, /io/];
   let flag = false;
-    dipArray.forEach(function(regex){
-      if(regex.test(input)){
-       flag = true;
-      }
-    })
-    return flag;
+  dipArray.forEach(function(regex){
+    if(regex.test(input)){
+      flag = true;
+    }
+  });
+  return flag;
 }
 
 export function checkForLE(input){
-
   var checkLE = /le$/;
   return checkLE.test(input);
-
 }
 
 //big function for haiku checker
@@ -75,8 +83,7 @@ export function haikuChecker(haiku){
   if(lineCounter(lineThree) != 5){
     return false;
   }
-return true;
-
+  return true;
 }
 
 export function countSyllables(word){
@@ -88,6 +95,9 @@ export function countSyllables(word){
     }
   }
   if (checkForDips(word) && !dipEE.test(word)){
+    counter--;
+  }
+  if(checkForY(word)){
     counter--;
   }
   return counter;
