@@ -22,7 +22,7 @@ export function isValidArray(inputArray) {
 //split the string into an array
 //compare vowel array and string array
 export function vowelCounter(input){
-  let vowelArray = ['a','e','i','o','u'];
+  let vowelArray = ['a','e','i','o','u','A','E','I','O','U'];
   let splitString = input.split('');
   let counter = 0;
   
@@ -36,6 +36,66 @@ export function vowelCounter(input){
   return counter;
 }
 
-export function haikuChecker(){
+//check for words that end with an 'e'
+export function checkForE(input){
+  var checkE = /e$/;
+  return checkE.test(input);
 }
 
+export function checkForDips(input){
+  let dipArray = [/ow/, /ou/, /ie/, /oi/, /oo/, /ea/, /ee/, /ai/,/aa/, /uu/, /ii/, /oa/];
+  let flag = false;
+    dipArray.forEach(function(regex){
+      if(regex.test(input)){
+       flag = true;
+      }
+    })
+    return flag;
+}
+
+export function checkForLE(input){
+
+  var checkLE = /le$/;
+  return checkLE.test(input);
+
+}
+
+//big function for haiku checker
+
+export function haikuChecker(haiku){
+  let lineOne = haiku[0];
+  let lineTwo = haiku[1];
+  let lineThree = haiku[2];
+  if(lineCounter(lineOne) != 5){
+    return false;
+  }
+  if(lineCounter(lineTwo) != 7){
+    return false;
+  }
+  if(lineCounter(lineThree) != 5){
+    return false;
+  }
+return true;
+
+}
+
+export function countSyllables(word){
+  let dipEE = /ee$/;
+  let counter = vowelCounter(word);
+  if(vowelCounter(word) != 1){
+    if(checkForE(word) && !checkForLE(word)){
+      counter--;
+    }
+  }
+  if (checkForDips(word) && !dipEE.test(word)){
+    counter--;
+  }
+  return counter;
+}
+
+export function lineCounter(line){
+  let counter = 0;
+  let words = line.split(' ');
+  words.forEach((word) => counter += countSyllables(word));
+  return counter;
+}
